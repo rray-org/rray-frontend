@@ -1,0 +1,17 @@
+{
+  "name": "@rray/frontend",
+  "version": "0.0.0",
+  "description": "Reusable frontend logic, Lit and state management",
+  "keywords": [
+    "lit",
+    "state",
+    "frontend"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.mjs",
+  "dependencies": {
+    "@nx-js/observer-util": "^4.2.2",
+    "lit": "^2.8.0"
+  }
+}
