@@ -12,6 +12,6 @@
   "main": "./index.mjs",
   "dependencies": {
     "@nx-js/observer-util": "^4.2.2",
-    "lit": "^2.8.0"
+    "lit": "^3.0.0-pre.1"
   }
 }
