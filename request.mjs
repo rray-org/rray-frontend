@@ -60,3 +60,13 @@ export function post(url, data) {
     body: JSON.stringify(data),
   });
 }
+
+export function patch(url, data) {
+  return get(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify(data),
+  });
+}
