@@ -27,7 +27,7 @@ function buildUrl(base, data) {
   return url;
 }
 
-export function get(url, options, data = null) {
+export function request(url, options, data = null) {
   requests++;
   triggerProgress();
   return fetch(buildUrl(url, data), options)
@@ -51,22 +51,16 @@ export function get(url, options, data = null) {
     });
 }
 
-export function post(url, data) {
-  return get(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
+function requestJson(url, options, data) {
+  return request(url, {
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify(data),
+    ...options,
   });
 }
 
-export function patch(url, data) {
-  return get(url, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-    body: JSON.stringify(data),
-  });
-}
+export const get = (url, data) => request(url, {}, data);
+export const post = (url, data) => requestJson(url, { method: 'POST' }, data);
+export const patch = (url, data) => requestJson(url, { method: 'PATCH' }, data);
+export const put = (url, data) => requestJson(url, { method: 'PUT' }, data);
+export const delet = (url, data) => request(url, { method: 'DELETE' }, data);
