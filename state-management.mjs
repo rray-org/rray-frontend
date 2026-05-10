@@ -5,24 +5,43 @@ const store = observable;
 function autorun(method) {
   let first = true;
   const reaction = observe(() => {
-    method(first);
-    first = false;
-  });
+    try {
+      method(first);
+    } finally {
+      first = false;
+    }
+  }, { lazy: true });
+  try {
+    reaction();
+  } catch (err) {
+    unobserve(reaction);
+    throw err;
+  }
   return () => unobserve(reaction);
 }
 
 function autopromise(condition) {
   let abort;
   let dispose;
+  let resolved = false;
   const promise = new Promise((resolve, reject) => {
     abort = reject;
-    dispose = autorun(first => {
-      const result = condition(first);
-      if (result) resolve(result);
-    });
+    try {
+      dispose = autorun(first => {
+        if (resolved) return;
+        const result = condition(first);
+        if (!result) return;
+        resolved = true;
+        resolve(result);
+        if (dispose) dispose();
+      });
+    } catch (err) {
+      reject(err);
+      return;
+    }
+    if (resolved) dispose();
   });
   promise.abort = abort;
-  promise.finally(dispose);
   return promise;
 }
 
