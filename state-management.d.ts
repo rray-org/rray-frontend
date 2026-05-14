@@ -1,4 +1,4 @@
-// Type declarations for `state-management.mjs`. Hand-written so the
+// Type declarations for `state-management.js`. Hand-written so the
 // `.mjs` source stays untouched (it is backported upstream as-is) and
 // `tsc --noEmit` doesn't need `allowJs: true` to traverse it. Mirrors
 // the `common/utf8.d.ts` approach.

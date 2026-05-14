@@ -1,4 +1,4 @@
-// `state-management.mjs` — `autorun` /
+// `state-management.js` — `autorun` /
 // `autopromise` are thin wrappers around @nx-js/observer-util.
 // Three robustness bugs the original implementation missed:
 //
@@ -21,7 +21,7 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 
-const { store, autorun, autopromise } = await import('../state-management.mjs')
+import { store, autorun, autopromise } from '../state-management.js'
 
 describe('autorun', () => {
   it('passes first=true on the initial run, first=false thereafter', () => {

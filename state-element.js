@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { autorun } from './state-management.mjs';
+import { autorun } from './state-management.js';
 
 export { LitElement, html, css, render } from 'lit';
 export { repeat } from 'lit/directives/repeat.js';
